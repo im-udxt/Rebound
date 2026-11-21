@@ -1,0 +1,60 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #05040c;
+  overflow: hidden;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+#game {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#game canvas {
+  display: block;
+  outline: none;
+}
+#rotate {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: #061418;
+  color: #f4f1ff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 22px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#rotate .pip {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffffff, #fff3b0 45%, #ffb547);
+  box-shadow: 0 0 30px #fff3b0;
+  animation: tilt 1.6s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+@keyframes tilt {
+  0%,
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+  50% {
+    transform: rotate(90deg) translateY(-14px);
+  }
+}
+@media (orientation: portrait) and (pointer: coarse) {
+  #rotate {
+    display: flex;
+  }
+}

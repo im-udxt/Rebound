@@ -1,0 +1,71 @@
+from lib import Level, emit_ts
+L = Level(154)
+def wind(h0, h1, a, b, ch):
+    for h in range(h0, h1 + 1):
+        for c in range(a, b + 1):
+            if L.g[h][c] == '.': L.g[h][c] = ch
+# A: updraft
+L.rock(0, 0, 17); L.put(1, 7, 'P')
+L.ledge(3, 2, 6); L.sparks(4, 3, 5)
+L.sparks(5, 14); L.sparks(8, 14); wind(1, 10, 13, 15, '~')
+L.ledge(12, 11, 17); L.sparks(13, 12)
+# B: ice
+L.run(15, 4, 9, 'i'); L.sparks(16, 5, 7)
+L.ledge(18, 0, 3); L.put(19, 1, 'L'); L.sparks(19, 3)
+# C: side wind toward wall spikes
+L.ledge(21, 5, 9); L.sparks(22, 7)
+L.ledge(24, 1, 4); L.sparks(25, 2)
+for h in range(22, 26): L.put(h, 17, '<')
+wind(22, 25, 0, 16, '}')
+L.ledge(27, 6, 10); L.sparks(28, 8)
+# D: storm gates
+L.ledge(30, 2, 15); L.put(31, 15, 'L'); L.sparks(31, 5, 11)
+L.run(32, 2, 8, 'z'); L.run(32, 9, 15, 'x')
+L.ledge(33, 2, 15); L.sparks(34, 4, 13)
+# E: ice into updraft with a storm block
+L.rock(36, 0, 2); L.run(36, 3, 8, 'i'); L.sparks(37, 5)
+L.put(44, 1, 'z')
+wind(37, 48, 0, 2, '~')
+L.put(47, 3, 'M')
+L.ledge(50, 3, 7); L.put(51, 5, 'L')
+# F
+L.ledge(53, 9, 13); L.sparks(54, 10, 12)
+L.run(56, 13, 17, 'i'); L.sparks(57, 15)
+L.ledge(59, 8, 12); L.sparks(60, 10)
+L.ledge(62, 12, 16); L.sparks(63, 14)
+for h in range(60, 64): L.put(h, 0, '>')
+wind(60, 63, 2, 17, '{')
+L.ledge(65, 6, 10); L.sparks(66, 7, 9)
+L.put(72, 12, 'z'); L.put(72, 13, 'z'); L.put(76, 13, 'x'); L.put(76, 14, 'x')
+wind(66, 80, 12, 14, '~')
+L.ledge(69, 16, 17); L.put(70, 17, 'M')
+L.ledge(82, 10, 15); L.put(83, 12, 'L'); L.sparks(83, 14)
+# G
+L.run(85, 3, 8, 'i'); L.sparks(86, 4, 6)
+L.ledge(88, 0, 3); L.sparks(89, 1, 3)
+L.ledge(91, 0, 17); L.sparks(92, 4, 13)
+L.run(93, 0, 8, 'z'); L.run(93, 9, 17, 'x')
+L.ledge(94, 0, 17); L.sparks(95, 2, 15)
+L.run(97, 10, 15, 'i'); L.sparks(98, 12)
+L.ledge(100, 3, 7); L.sparks(101, 4, 6)
+L.ledge(103, 0, 3); L.sparks(105, 1)
+for h in range(101, 105): L.put(h, 17, '<')
+L.put(104, 16, 'M')
+wind(101, 104, 0, 15, '}')
+L.ledge(106, 6, 11); L.put(107, 8, 'L'); L.sparks(107, 10)
+# H
+L.rock(108, 13, 17)
+L.put(115, 15, 'z'); L.put(119, 14, 'x')
+L.sparks(112, 15); wind(109, 122, 14, 16, '~')
+L.ledge(124, 9, 13); L.sparks(125, 10, 12)
+L.run(127, 2, 7, 'i'); L.sparks(128, 4)
+L.ledge(130, 0, 3); L.put(131, 0, 'M'); L.sparks(131, 2)
+L.ledge(133, 5, 12); L.sparks(134, 7, 10)
+L.run(135, 5, 8, 'z'); L.run(135, 9, 12, 'x')
+L.ledge(136, 5, 12); L.put(137, 6, 'L')
+L.run(139, 13, 17, 'i'); L.put(140, 17, 'M'); L.sparks(140, 14)
+L.ledge(142, 8, 12); L.sparks(143, 9, 11)
+L.ledge(145, 2, 6); L.sparks(146, 3, 5)
+L.ledge(148, 9, 13); L.sparks(149, 10, 12)
+L.run(151, 0, 17, 'E')
+emit_ts('zone4', 'ZONE4_STORM', 'Zone 4 - Storm Shaft (wind, ice, lightning)', L.rows(), '../../src/levels/zone4.ts')
